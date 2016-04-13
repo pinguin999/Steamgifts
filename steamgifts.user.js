@@ -4,6 +4,8 @@
 // @description SteamGiftsBot
 // @include     http://www.steamgifts.com/
 // @include     http://www.steamgifts.com/giveaway/*
+// @include     https://www.steamgifts.com/
+// @include     https://www.steamgifts.com/giveaway/*
 // @version     1
 // @grant       none
 // ==/UserScript==
