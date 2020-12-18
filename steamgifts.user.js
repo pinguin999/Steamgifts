@@ -2,19 +2,20 @@
 // @name        SteamGiftsBot
 // @namespace   steam
 // @description SteamGiftsBot
-// @include     http://www.steamgifts.com/
-// @include     http://www.steamgifts.com/giveaway/*
 // @include     https://www.steamgifts.com/
 // @include     https://www.steamgifts.com/giveaway/*
 // @version     1
 // @grant       none
+// @require http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js
 // ==/UserScript==
-reserve = 25;
+$('.is-faded').hide()
+reserve = 60;
 enterUnderEntetys = 1000;
 window.addEventListener('load', function () {
+$('.pinned-giveaways__button').click()
   //window.location.href.indexOF("giveaway") == -1 &&
   console.log('start');
-  for (i = document.getElementsByClassName('giveaway__heading').length - 25; i < document.getElementsByClassName('giveaway__heading').length; i++)
+  for (i = document.getElementsByClassName('giveaway__heading').length - 50; i < document.getElementsByClassName('giveaway__heading').length; i++)
   {
     ret = enterGift(i);
     if (ret == - 1)
@@ -24,7 +25,8 @@ window.addEventListener('load', function () {
 
   timeOut();
   console.log('win3');
-  document.getElementsByClassName('sidebar__entry-insert') [0].click();
+  timeClick();
+  //document.getElementsByClassName('sidebar__entry-insert') [0].click();
   console.log('win4');
 }, false);
 function enterGift(index)
@@ -39,7 +41,7 @@ function enterGift(index)
       {
         return;
         //timeOut();
-      } 
+      }
       else
       {
         //Open gift page
@@ -49,7 +51,7 @@ function enterGift(index)
         return - 1;
       }
     }
-  } 
+  }
   else
   {
     return;
@@ -65,16 +67,25 @@ function enterGift(index)
 }
 function timeOut() {
   console.log('startTimeout');
-  time = Math.floor((Math.random() * 9000) + 6000);
+  time = Math.floor((Math.random() * 10000) + 3000);
   setTimeout(function () {
-    window.location.href = 'http://www.steamgifts.com/'
+    window.location.href = 'https://www.steamgifts.com/'
   }, time);
+}
+
+function timeClick() {
+  console.log('startClick');
+  time = Math.floor((Math.random() * 1000) + 300);
+  setTimeout(function () {
+    document.getElementsByClassName('sidebar__entry-insert') [0].click()
+  }, time);
+
 }
 function checkUsers(index) {
   string = document.getElementsByTagName('span') [10 + 5 * index].innerHTML.replace(' entries', '');
   if (string.indexOf('hours ago') > - 1) {
     document.getElementsByTagName('span') [11 + 5 * index].innerHTML.replace(' entries', '')
-  } 
+  }
   else {
     document.getElementsByTagName('span') [10 + 5 * index].innerHTML.replace(' entries', '')
   }
